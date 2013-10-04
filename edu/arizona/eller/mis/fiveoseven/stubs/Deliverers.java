@@ -3,12 +3,10 @@ package edu.arizona.eller.mis.fiveoseven.stubs;
 /**
  * Created with IntelliJ IDEA.
  * User: tb189431e
- * Date: 8/29/13
- * Time: 9:26 PM
+ * Date: 9/12/13
+ * Time: 2:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface Deliverer {
-
-    public String getScores();
-
+public enum Deliverers {
+    EMAIL, RSS, TWITTER
 }

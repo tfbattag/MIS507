@@ -9,4 +9,8 @@ package edu.arizona.eller.mis.fiveoseven.stubs;
  */
 public class EmailDeliverer implements Deliverer {
 
+    public String getScores(){
+        return "SCORES>>>";
+    }
+
 }
