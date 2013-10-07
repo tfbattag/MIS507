@@ -1,5 +1,9 @@
 package edu.arizona.eller.mis.fiveoseven.subscribers;
 
+import edu.arizona.eller.mis.fiveoseven.dto.Game;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: tb189431e
@@ -8,5 +12,7 @@ package edu.arizona.eller.mis.fiveoseven.subscribers;
  * To change this template use File | Settings | File Templates.
  */
 public interface Subscriber {
-
+    public void updateScores(List<Game> games);
 }
+
+

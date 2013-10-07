@@ -23,4 +23,10 @@ public class SubscriptionManager {
         subscribers.add(subscriber);
     }
 
+    private void updateScores(){
+        for(Subscriber s:subscribers){
+
+        }
+    }
+
 }
