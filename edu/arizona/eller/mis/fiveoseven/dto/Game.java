@@ -16,6 +16,10 @@ public class Game {
     private int homeScore;
     private int visitorScore;
 
+    private Game(){
+        // do something here.
+    }
+
     public Game(String homeTeam, String visitingTeam) throws InvalidStateException{
         this.homeTeam = homeTeam;
         this.visitingTeam = visitingTeam;
