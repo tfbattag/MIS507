@@ -1,5 +1,6 @@
 package edu.arizona.eller.mis.fiveoseven.esb;
 
+import edu.arizona.eller.mis.fiveoseven.monitors.NflGameMonitor;
 import org.junit.Test;
 
 /**
@@ -9,10 +10,10 @@ import org.junit.Test;
  * Time: 8:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ScoreServiceTest {
+public class FinalProjectScoreServiceTest {
     @Test
     public void testLoadGames() throws Exception {
-        ScoreService ss = new ScoreService();
+        FinalProjectScoreService ss = new FinalProjectScoreService(new NflGameMonitor());
         ss.loadGames();
     }
 }

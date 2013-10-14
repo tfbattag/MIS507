@@ -11,6 +11,7 @@ import edu.arizona.eller.mis.fiveoseven.exceptions.InvalidStateException;
  * over the duration of the game.
  */
 public class Game {
+    private int gameID;
     private String homeTeam;
     private String visitingTeam;
     private int homeScore;
@@ -20,13 +21,18 @@ public class Game {
         // do something here.
     }
 
-    public Game(String homeTeam, String visitingTeam) throws InvalidStateException{
+    public Game(int gameID, String homeTeam, String visitingTeam) throws InvalidStateException{
+        this.gameID = gameID;
         this.homeTeam = homeTeam;
         this.visitingTeam = visitingTeam;
         homeScore = 0;
         visitorScore = 0;
         if (!isValid())
             throw new InvalidStateException("Missing Team Information.");
+    }
+
+    public int getGameID() {
+        return gameID;
     }
 
     public String getHomeTeam() {
