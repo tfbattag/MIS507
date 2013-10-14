@@ -9,4 +9,8 @@ package edu.arizona.eller.mis.fiveoseven.stubs;
  */
 public class RSSDeliverer implements Deliverer {
 
+    @Override
+    public String updateScores() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

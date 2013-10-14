@@ -1,6 +1,6 @@
 package edu.arizona.eller.mis.fiveoseven.dto;
 
-import edu.arizona.eller.mis.fiveoseven.InvalidStateException;
+import edu.arizona.eller.mis.fiveoseven.exceptions.InvalidStateException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,8 +11,8 @@ import edu.arizona.eller.mis.fiveoseven.InvalidStateException;
  * over the duration of the game.
  */
 public class Game {
-    private final String homeTeam;
-    private final String visitingTeam;
+    private String homeTeam;
+    private String visitingTeam;
     private int homeScore;
     private int visitorScore;
 
@@ -25,8 +25,9 @@ public class Game {
         this.visitingTeam = visitingTeam;
         homeScore = 0;
         visitorScore = 0;
-        validState();
-     }
+        if (!isValid())
+            throw new InvalidStateException("Missing Team Information.");
+    }
 
     public String getHomeTeam() {
         return homeTeam;
@@ -56,8 +57,11 @@ public class Game {
      * validState() is an implementation of the repInvariant for the Game class.
      * @throws InvalidStateException
      */
-    private void validState() throws InvalidStateException{
-        if (this.homeTeam == null || this.visitingTeam == null)
-            throw new InvalidStateException("Team information missing.");
+    private boolean isValid() throws InvalidStateException{
+        if (this.homeTeam == null || this.visitingTeam == null){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

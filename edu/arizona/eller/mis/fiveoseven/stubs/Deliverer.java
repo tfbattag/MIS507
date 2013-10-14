@@ -9,6 +9,6 @@ package edu.arizona.eller.mis.fiveoseven.stubs;
  */
 public interface Deliverer {
 
-    public String getScores();
+    public String updateScores();
 
 }

@@ -1,4 +1,4 @@
-package edu.arizona.eller.mis.fiveoseven;
+package edu.arizona.eller.mis.fiveoseven.exceptions;
 
 /**
  * Created with IntelliJ IDEA.

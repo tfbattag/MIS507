@@ -1,0 +1,15 @@
+New York Giants|Chicago Bears
+Green Bay Packers|Baltimore Ravens
+Cincinnati Bengals|Buffalo Bills
+Detroit Lions|Cleveland Browns
+St. Louis Rams|Houston Texans
+Oakland Raiders|Kansas City Chiefs
+Carolina Panthers|Minnesota Vikings
+Pittsburgh Steelers|New York Jets
+Philadelphia Eagles|Tampa Bay Buccaneers
+Jacksonville Jaguars|Denver Broncos
+Tennessee Titans|Seattle Seahawks
+New Orleans Saints|New England Patriots
+Arizona Cardinals|San Francisco 49ers
+Washington Redskins|Dallas Cowboys
+Indianapolis Colts|San Diego Chargers
