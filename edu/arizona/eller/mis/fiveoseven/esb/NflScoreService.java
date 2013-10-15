@@ -14,18 +14,30 @@ import java.util.List;
  * User: tb189431e
  * Date: 10/13/13
  * Time: 7:08 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * This is the "CENTRAL" class that serves as the "brain" of the whole system.
+ * This class is used to subscribe to the "Nfl's (fake) gateway to get a list of games.
+ * On doing so, it passes an instance of itself to the gateway (NflGameMonitor) to act
+ * as a subscriber.
  */
-public class FinalProjectScoreService implements ScoreService{
+public class NflScoreService implements ScoreService{
     NflGameMonitor nflGameMonitor;
     List<Game> games;
     SubscriptionManager subscriptionManager;
 
-    public FinalProjectScoreService(NflGameMonitor nflGameMonitor){
+    /**
+     * Constructor for the NflScoreService.
+     * @param nflGameMonitor
+     * @param subscriptionManager
+     * @throws InvalidStateException
+     */
+    public NflScoreService(NflGameMonitor nflGameMonitor, SubscriptionManager subscriptionManager)throws InvalidStateException{
         this.nflGameMonitor = nflGameMonitor;
         games = new ArrayList<Game>();
         loadGames();
-        subscriptionManager = new SubscriptionManager();
+        this.subscriptionManager = subscriptionManager;
+        if(!isValid())
+            throw new InvalidStateException("Cannot connect to NFL Gateway.");
     }
 
     /*TODO: make private after testing. */
@@ -82,6 +94,18 @@ public class FinalProjectScoreService implements ScoreService{
      */
     public List<Game> getGames() {
         return games;
+    }
+
+    /**
+     * Implementation of repInvariant method verifying that instances of this class have been created properly.
+     * It verifies that the three dependencies are not null.
+     */
+    private boolean isValid(){
+        if(nflGameMonitor == null || games == null || subscriptionManager == null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }

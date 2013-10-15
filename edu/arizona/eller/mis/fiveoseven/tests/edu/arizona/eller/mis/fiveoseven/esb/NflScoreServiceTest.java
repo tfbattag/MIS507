@@ -10,10 +10,10 @@ import org.junit.Test;
  * Time: 8:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FinalProjectScoreServiceTest {
+public class NflScoreServiceTest {
     @Test
     public void testLoadGames() throws Exception {
-        FinalProjectScoreService ss = new FinalProjectScoreService(new NflGameMonitor());
+        NflScoreService ss = new NflScoreService(new NflGameMonitor(), new SubscriptionManager());
         ss.loadGames();
     }
 }

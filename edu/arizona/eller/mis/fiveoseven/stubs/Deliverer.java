@@ -1,5 +1,10 @@
 package edu.arizona.eller.mis.fiveoseven.stubs;
 
+import edu.arizona.eller.mis.fiveoseven.dto.Game;
+
+import java.io.File;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: tb189431e
@@ -8,7 +13,5 @@ package edu.arizona.eller.mis.fiveoseven.stubs;
  * To change this template use File | Settings | File Templates.
  */
 public interface Deliverer {
-
-    public String updateScores();
-
+    public void updateScores(List<Game> games);
 }

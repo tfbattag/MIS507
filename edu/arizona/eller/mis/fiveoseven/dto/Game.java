@@ -17,11 +17,18 @@ public class Game {
     private int homeScore;
     private int visitorScore;
 
-    private Game(){
-        // do something here.
-    }
+    private Game(){}
 
-    public Game(int gameID, String homeTeam, String visitingTeam) throws InvalidStateException{
+    /**
+     * This constructor builds a game that represents two teams, their score against each other and an id that
+     * identifies this Game. The constructor calls isValid() to verify that it has been instantiated correctly
+     * to a valid state.
+     * @param gameID
+     * @param visitingTeam
+     * @param homeTeam
+     * @throws InvalidStateException
+     */
+    public Game(int gameID, String visitingTeam, String homeTeam) throws InvalidStateException{
         this.gameID = gameID;
         this.homeTeam = homeTeam;
         this.visitingTeam = visitingTeam;
@@ -31,30 +38,58 @@ public class Game {
             throw new InvalidStateException("Missing Team Information.");
     }
 
+    /**
+     * Returns the ID of this Game.
+     * @return int
+     */
     public int getGameID() {
         return gameID;
     }
 
+    /**
+     * Returns the name of the home team in String.
+     * @return String
+     */
     public String getHomeTeam() {
         return homeTeam;
     }
 
+    /**
+     * returns the name of the visiting team as String.
+     * @return String
+     */
     public String getVisitingTeam() {
         return visitingTeam;
     }
 
+    /**
+     * Returns the score of the home team.
+     * @return int
+     */
     public int getHomeScore() {
         return homeScore;
     }
 
+    /**
+     * Accepts input of the home teams' score.
+     * @param homeScore
+     */
     public void setHomeScore(int homeScore) {
         this.homeScore = homeScore;
     }
 
+    /**
+     * Returns the visitor's score
+     * @return int
+     */
     public int getVisitorScore() {
         return visitorScore;
     }
 
+    /**
+     * Accepts input of the visiting team's score.
+     * @param visitorScore
+     */
     public void setVisitorScore(int visitorScore) {
         this.visitorScore = visitorScore;
     }

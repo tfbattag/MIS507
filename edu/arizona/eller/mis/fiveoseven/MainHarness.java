@@ -1,8 +1,11 @@
 package edu.arizona.eller.mis.fiveoseven;
 
 import edu.arizona.eller.mis.fiveoseven.dto.Game;
-import edu.arizona.eller.mis.fiveoseven.esb.FinalProjectScoreService;
+import edu.arizona.eller.mis.fiveoseven.esb.NflScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.ScoreService;
+import edu.arizona.eller.mis.fiveoseven.esb.SubscriptionManager;
+import edu.arizona.eller.mis.fiveoseven.exceptions.InvalidStateException;
+import edu.arizona.eller.mis.fiveoseven.mocks.SubscriberGenerator;
 import edu.arizona.eller.mis.fiveoseven.monitors.NflGameMonitor;
 
 import java.util.Iterator;
@@ -19,20 +22,27 @@ import java.util.Iterator;
 public class MainHarness {
     private static ScoreService scoreService;
     private static NflGameMonitor nflGameMonitor;
+    private static SubscriptionManager subscriptionManager;
 
     public static void main(String args[]){
         nflGameMonitor = new NflGameMonitor();
-        scoreService = new FinalProjectScoreService(nflGameMonitor);
+        subscriptionManager = new SubscriptionManager();
+        try{
+            scoreService = new NflScoreService(nflGameMonitor, subscriptionManager);
+        }catch(InvalidStateException ie){
+            ie.printStackTrace();
+        }
+
+        addSubscribers();                   //at this point, the subscriptionManager should have a list of Subscribers.
+        nflGameMonitor.updateAllScores();   //the monitor has a reference to the subscriptionManager. Thus scoreService's scores are updated.
+        subscriptionManager.updateScores(scoreService.getGames());
 
 
-        scoreService.loadGames();
-        nflGameMonitor.updateAllScores();
+    }
 
-
-        Iterator<Game> it = scoreService.getGames().iterator();
-        while(it.hasNext()){
-            Game game = it.next();
-            System.out.println(game.getVisitingTeam() + ": " + game.getVisitorScore());
+    private static void addSubscribers(){
+        for(int i = 0; i <= 12; i++){
+            subscriptionManager.addSubscribers(SubscriberGenerator.getSubscriber(i), scoreService);
         }
     }
 }

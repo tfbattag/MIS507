@@ -11,14 +11,14 @@ import edu.arizona.eller.mis.fiveoseven.stubs.*;
  */
 public class DelivererFactory {
 
-    public static Deliverer getDeliverer(Deliverers deliverers){
+    public static Deliverer getDeliverer(Deliverers deliverers, ScoreService scoreService){
         switch(deliverers){
             case EMAIL:
-                return new EmailDeliverer();
+                return new EmailDeliverer(scoreService);
             case RSS:
-                return new RSSDeliverer();
+                return new RSSDeliverer(scoreService);
             case TWITTER:
-                return new TwitterDeliverer();
+                return new TwitterDeliverer(scoreService);
             default:
                 return null;
         }

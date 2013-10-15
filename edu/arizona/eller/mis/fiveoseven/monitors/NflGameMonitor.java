@@ -1,6 +1,6 @@
 package edu.arizona.eller.mis.fiveoseven.monitors;
 
-import edu.arizona.eller.mis.fiveoseven.esb.FinalProjectScoreService;
+import edu.arizona.eller.mis.fiveoseven.esb.NflScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.ScoreService;
 
 import java.io.File;
@@ -24,17 +24,18 @@ public class NflGameMonitor {
 
     /**
      * This method accepts an instance of a ScoreService to be registered for future score updates.
-     * @param finalProjectScoreService
+     * @param nflScoreService
      * @return File that contains a listing of the weekly matchups.
      */
-    public File getWeeklyGames(FinalProjectScoreService finalProjectScoreService){
-        scoreServices.add(finalProjectScoreService);
+    public File getWeeklyGames(NflScoreService nflScoreService){
+        scoreServices.add(nflScoreService);
         File games = new File("/data/GIT_REPOS/mis507/Final_Project/MIS507/src/weeklyGames.txt");
         return games;
     }
 
     /**
      * This method will iterate through a list of registered ScoreServices to inject them with a feed of updated scores.
+     * In this example, there is only one ScoreService, our NflScoreService.
      */
     public void updateAllScores(){
         File scores = new File("/data/GIT_REPOS/mis507/Final_Project/MIS507/src/scores1.txt");
