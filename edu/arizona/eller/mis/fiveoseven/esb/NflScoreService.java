@@ -2,8 +2,7 @@ package edu.arizona.eller.mis.fiveoseven.esb;
 
 import edu.arizona.eller.mis.fiveoseven.dto.Game;
 import edu.arizona.eller.mis.fiveoseven.exceptions.InvalidStateException;
-import edu.arizona.eller.mis.fiveoseven.monitors.NflGameMonitor;
-import edu.arizona.eller.mis.fiveoseven.subscribers.Subscriber;
+import edu.arizona.eller.mis.fiveoseven.providers.NflGameProvider;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,22 +16,22 @@ import java.util.List;
  *
  * This is the "CENTRAL" class that serves as the "brain" of the whole system.
  * This class is used to subscribe to the "Nfl's (fake) gateway to get a list of games.
- * On doing so, it passes an instance of itself to the gateway (NflGameMonitor) to act
+ * On doing so, it passes an instance of itself to the gateway (NflGameProvider) to act
  * as a subscriber.
  */
 public class NflScoreService implements ScoreService{
-    NflGameMonitor nflGameMonitor;
+    NflGameProvider nflGameProvider;
     List<Game> games;
     SubscriptionManager subscriptionManager;
 
     /**
      * Constructor for the NflScoreService.
-     * @param nflGameMonitor
+     * @param nflGameProvider
      * @param subscriptionManager
      * @throws InvalidStateException
      */
-    public NflScoreService(NflGameMonitor nflGameMonitor, SubscriptionManager subscriptionManager)throws InvalidStateException{
-        this.nflGameMonitor = nflGameMonitor;
+    public NflScoreService(NflGameProvider nflGameProvider, SubscriptionManager subscriptionManager)throws InvalidStateException{
+        this.nflGameProvider = nflGameProvider;
         games = new ArrayList<Game>();
         loadGames();
         this.subscriptionManager = subscriptionManager;
@@ -40,10 +39,13 @@ public class NflScoreService implements ScoreService{
             throw new InvalidStateException("Cannot connect to NFL Gateway.");
     }
 
-    /*TODO: make private after testing. */
+    /**
+     * This method is used to read a listing of Games from the provider.
+     * It could be made private, but it is public to allow for unit testing.
+     */
     public void loadGames(){
         int gameNumber = 1;
-        File nflGames = nflGameMonitor.getWeeklyGames(this);
+        File nflGames = nflGameProvider.getWeeklyGames(this);
         BufferedReader br;
         try{
             String gameListing;
@@ -65,6 +67,10 @@ public class NflScoreService implements ScoreService{
         }
     }
 
+    /**
+     * This method accepts a File that contains the updated scores as published by the score provider.
+     * @param updatedScores
+     */
     public void updateAllScores(File updatedScores){
         BufferedReader br;
         int scoreNumber = 1;
@@ -89,8 +95,9 @@ public class NflScoreService implements ScoreService{
         }
     }
 
-    /**TODO: remove this method later.
-     *
+    /**
+     * This method returns this Service's list of games in the form of a List.
+     * @return List<Game>
      */
     public List<Game> getGames() {
         return games;
@@ -101,7 +108,7 @@ public class NflScoreService implements ScoreService{
      * It verifies that the three dependencies are not null.
      */
     private boolean isValid(){
-        if(nflGameMonitor == null || games == null || subscriptionManager == null){
+        if(nflGameProvider == null || games == null || subscriptionManager == null){
             return false;
         }else{
             return true;

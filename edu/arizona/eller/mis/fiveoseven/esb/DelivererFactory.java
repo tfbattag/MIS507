@@ -7,18 +7,26 @@ import edu.arizona.eller.mis.fiveoseven.stubs.*;
  * User: tb189431e
  * Date: 8/29/13
  * Time: 9:26 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * This class implements a Factory that delivers properly constructed DelivererProxy objects.
  */
 public class DelivererFactory {
 
-    public static Deliverer getDeliverer(Deliverers deliverers, ScoreService scoreService){
+    /**
+     * This method is the implementation of the Factory. It accepts an argument that specifies the type of DelivererProxy
+     * needed by a Subscriber. It only creates objects from the accepted types specified by the Deliverers Enumeration.
+     * @param deliverers
+     * @param scoreService
+     * @return
+     */
+    public static DelivererProxy getDeliverer(Deliverers deliverers, ScoreService scoreService){
         switch(deliverers){
             case EMAIL:
-                return new EmailDeliverer(scoreService);
+                return new EmailDelivererProxy();
             case RSS:
-                return new RSSDeliverer(scoreService);
+                return new RSSDelivererProxy();
             case TWITTER:
-                return new TwitterDeliverer(scoreService);
+                return new TwitterDelivererProxy();
             default:
                 return null;
         }

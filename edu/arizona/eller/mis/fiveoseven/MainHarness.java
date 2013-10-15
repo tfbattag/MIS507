@@ -1,14 +1,11 @@
 package edu.arizona.eller.mis.fiveoseven;
 
-import edu.arizona.eller.mis.fiveoseven.dto.Game;
 import edu.arizona.eller.mis.fiveoseven.esb.NflScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.ScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.SubscriptionManager;
 import edu.arizona.eller.mis.fiveoseven.exceptions.InvalidStateException;
 import edu.arizona.eller.mis.fiveoseven.mocks.SubscriberGenerator;
-import edu.arizona.eller.mis.fiveoseven.monitors.NflGameMonitor;
-
-import java.util.Iterator;
+import edu.arizona.eller.mis.fiveoseven.providers.NflGameProvider;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,23 +18,21 @@ import java.util.Iterator;
  */
 public class MainHarness {
     private static ScoreService scoreService;
-    private static NflGameMonitor nflGameMonitor;
+    private static NflGameProvider nflGameProvider;
     private static SubscriptionManager subscriptionManager;
 
     public static void main(String args[]){
-        nflGameMonitor = new NflGameMonitor();
+        nflGameProvider = new NflGameProvider();
         subscriptionManager = new SubscriptionManager();
         try{
-            scoreService = new NflScoreService(nflGameMonitor, subscriptionManager);
+            scoreService = new NflScoreService(nflGameProvider, subscriptionManager);
         }catch(InvalidStateException ie){
             ie.printStackTrace();
         }
 
         addSubscribers();                   //at this point, the subscriptionManager should have a list of Subscribers.
-        nflGameMonitor.updateAllScores();   //the monitor has a reference to the subscriptionManager. Thus scoreService's scores are updated.
+        nflGameProvider.updateAllScores();   //the monitor has a reference to the subscriptionManager. Thus scoreService's scores are updated.
         subscriptionManager.updateScores(scoreService.getGames());
-
-
     }
 
     private static void addSubscribers(){

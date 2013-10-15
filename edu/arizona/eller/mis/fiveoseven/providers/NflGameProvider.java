@@ -1,4 +1,4 @@
-package edu.arizona.eller.mis.fiveoseven.monitors;
+package edu.arizona.eller.mis.fiveoseven.providers;
 
 import edu.arizona.eller.mis.fiveoseven.esb.NflScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.ScoreService;
@@ -13,17 +13,23 @@ import java.util.List;
  * User: tb189431e
  * Date: 10/13/13
  * Time: 7:12 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * This class is a Publisher/Provider as well. It provides the listing of teams and the scores
+ * from the NFL in File format.
  */
-public class NflGameMonitor {
+public class NflGameProvider {
     List<ScoreService> scoreServices;
 
-    public NflGameMonitor(){
+    /**
+     * Default constructor creates an instance of "subscribing" score relay services.
+     */
+    public NflGameProvider(){
         scoreServices = new ArrayList<ScoreService>();
     }
 
     /**
      * This method accepts an instance of a ScoreService to be registered for future score updates.
+     * This is a representation of the registering of a Subscriber to this Provider/Publisher.
      * @param nflScoreService
      * @return File that contains a listing of the weekly matchups.
      */

@@ -36,9 +36,9 @@ public class SubscriptionManager {
      * @param scoreService
      */
     public void addSubscribers(Subscriber subscriber, ScoreService scoreService){
-        //call to factory for correct Deliverer here
+        //call to factory for correct DelivererProxy here
 
-        subscriber.setDeliverer(DelivererFactory.getDeliverer(subscriber.getPreferredMethod(), scoreService));
+        subscriber.setDelivererProxy(DelivererFactory.getDeliverer(subscriber.getPreferredMethod(), scoreService));
         subscribers.put(subscriber.getPreferredMethod(), subscriber);
     }
 
@@ -49,7 +49,7 @@ public class SubscriptionManager {
      */
     public void updateScores(List<Game> games){
         for(Subscriber subscriber: subscribers.values()){
-            subscriber.getDeliverer().updateScores(games);
+            subscriber.getDelivererProxy().updateScores(games);
         }
     }
 
@@ -59,7 +59,7 @@ public class SubscriptionManager {
      * @param subscriber
      */
     public void removeSubscriber(Subscriber subscriber){
-        subscribers.remove(subscriber.getDeliverer(), subscriber);
+        subscribers.remove(subscriber.getDelivererProxy(), subscriber);
     }
 
 }

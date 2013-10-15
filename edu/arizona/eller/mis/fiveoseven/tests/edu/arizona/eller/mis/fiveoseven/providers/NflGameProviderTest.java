@@ -1,8 +1,7 @@
-package edu.arizona.eller.mis.fiveoseven.monitors;
+package edu.arizona.eller.mis.fiveoseven.providers;
 
 import edu.arizona.eller.mis.fiveoseven.esb.NflScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.SubscriptionManager;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,11 +12,11 @@ import org.junit.Test;
  * Time: 8:10 PM
  * To change this template use File | Settings | File Templates.
  */
-public class NflGameMonitorTest {
-    NflGameMonitor nfl;
+public class NflGameProviderTest {
+    NflGameProvider nfl;
     @Before
     public void setUp() throws Exception {
-        nfl = new NflGameMonitor();
+        nfl = new NflGameProvider();
     }
 
     @Test

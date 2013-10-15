@@ -2,10 +2,9 @@ package edu.arizona.eller.mis.fiveoseven.subscribers;
 
 import edu.arizona.eller.mis.fiveoseven.dto.Game;
 import edu.arizona.eller.mis.fiveoseven.esb.SubscriptionManager;
-import edu.arizona.eller.mis.fiveoseven.stubs.Deliverer;
+import edu.arizona.eller.mis.fiveoseven.stubs.DelivererProxy;
 import edu.arizona.eller.mis.fiveoseven.stubs.Deliverers;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -39,16 +38,16 @@ public interface Subscriber {
     public Deliverers getPreferredMethod();
 
     /**
-     * This method accepts the type of proxied Deliverer chosen by the Subscriber.
-     * @param deliverer
+     * This method accepts the type of proxied DelivererProxy chosen by the Subscriber.
+     * @param delivererProxy
      */
-    public void setDeliverer(Deliverer deliverer);
+    public void setDelivererProxy(DelivererProxy delivererProxy);
 
     /**
-     * This method grants access (returns) the injected Deliverer instance when needed.
+     * This method grants access (returns) the injected DelivererProxy instance when needed.
      * @return
      */
-    public Deliverer getDeliverer();
+    public DelivererProxy getDelivererProxy();
 }
 
 

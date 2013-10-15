@@ -1,6 +1,6 @@
 package edu.arizona.eller.mis.fiveoseven.esb;
 
-import edu.arizona.eller.mis.fiveoseven.monitors.NflGameMonitor;
+import edu.arizona.eller.mis.fiveoseven.providers.NflGameProvider;
 import org.junit.Test;
 
 /**
@@ -13,7 +13,7 @@ import org.junit.Test;
 public class NflScoreServiceTest {
     @Test
     public void testLoadGames() throws Exception {
-        NflScoreService ss = new NflScoreService(new NflGameMonitor(), new SubscriptionManager());
+        NflScoreService ss = new NflScoreService(new NflGameProvider(), new SubscriptionManager());
         ss.loadGames();
     }
 }
