@@ -22,7 +22,7 @@ import java.util.Properties;
  * This class is used to simulate the running environment. It will be responsible for
  * executing all of the code in the various sub-systems.
  */
-public class MainHarness {
+public class MainTestHarness {
     private static ScoreService scoreService;
     private static NflGameProvider nflGameProvider;
     private static SubscriptionManager subscriptionManager;
@@ -75,3 +75,4 @@ public class MainHarness {
         }
     }
 }
+

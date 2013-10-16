@@ -19,13 +19,20 @@ import java.util.List;
  */
 public class NflGameProvider {
     List<ScoreService> scoreServices;
+    private String gameFileLocation;
 
     /**
      * Default constructor creates an instance of "subscribing" score relay services.
      */
-    public NflGameProvider(){
+    public NflGameProvider(String gameFileLocation){
+        this.gameFileLocation = gameFileLocation;
         scoreServices = new ArrayList<ScoreService>();
     }
+
+    /**
+     * This constructor is private to ensure that the proper constructor is the only one available.
+     */
+    private NflGameProvider(){}
 
     /**
      * This method accepts an instance of a ScoreService to be registered for future score updates.
@@ -35,7 +42,7 @@ public class NflGameProvider {
      */
     public File getWeeklyGames(NflScoreService nflScoreService){
         scoreServices.add(nflScoreService);
-        File games = new File("/data/GIT_REPOS/mis507/Final_Project/MIS507/src/weeklyGames.txt");
+        File games = new File(gameFileLocation);
         return games;
     }
 
@@ -43,8 +50,8 @@ public class NflGameProvider {
      * This method will iterate through a list of registered ScoreServices to inject them with a feed of updated scores.
      * In this example, there is only one ScoreService, our NflScoreService.
      */
-    public void updateAllScores(){
-        File scores = new File("/data/GIT_REPOS/mis507/Final_Project/MIS507/src/scores1.txt");
+    public void updateAllScores(File scores){
+        //File scores =
         Iterator<ScoreService> it = scoreServices.iterator();
 
         while(it.hasNext()){
