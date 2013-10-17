@@ -16,10 +16,9 @@ public class DelivererFactory {
      * This method is the implementation of the Factory. It accepts an argument that specifies the type of DelivererProxy
      * needed by a Subscriber. It only creates objects from the accepted types specified by the Deliverers Enumeration.
      * @param deliverers
-     * @param scoreService
      * @return
      */
-    public static DelivererProxy getDeliverer(Deliverers deliverers, ScoreService scoreService){
+    public static DelivererProxy getDeliverer(Deliverers deliverers){
         switch(deliverers){
             case EMAIL:
                 return new EmailDelivererProxy();

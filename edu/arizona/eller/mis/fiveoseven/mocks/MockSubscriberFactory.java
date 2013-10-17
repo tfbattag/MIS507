@@ -14,7 +14,7 @@ import edu.arizona.eller.mis.fiveoseven.subscribers.Subscriber;
  * This is a utility class to assist with running the application in simulation mode.
  * It is used to generate some mock Subscribers.
  */
-public class SubscriberGenerator {
+public class MockSubscriberFactory {
 
     public static Subscriber getSubscriber(int i) {
         try {

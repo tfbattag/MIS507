@@ -2,8 +2,11 @@ package edu.arizona.eller.mis.fiveoseven.providers;
 
 import edu.arizona.eller.mis.fiveoseven.esb.NflScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.SubscriptionManager;
+import edu.arizona.eller.mis.fiveoseven.providers.NflGameProvider;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +19,9 @@ public class NflGameProviderTest {
     NflGameProvider nfl;
     @Before
     public void setUp() throws Exception {
-        nfl = new NflGameProvider();
+        Properties properties = new Properties();
+        properties.load(NflGameProviderTest.class.getResourceAsStream("files.properties"));
+        nfl = new NflGameProvider(properties.getProperty("GAMES"));
     }
 
     @Test

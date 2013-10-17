@@ -38,7 +38,7 @@ public class SubscriptionManager {
     public void addSubscribers(Subscriber subscriber, ScoreService scoreService){
         //call to factory for correct DelivererProxy here
 
-        subscriber.setDelivererProxy(DelivererFactory.getDeliverer(subscriber.getPreferredMethod(), scoreService));
+        subscriber.setDelivererProxy(DelivererFactory.getDeliverer(subscriber.getPreferredMethod()));
         subscribers.put(subscriber.getPreferredMethod(), subscriber);
     }
 

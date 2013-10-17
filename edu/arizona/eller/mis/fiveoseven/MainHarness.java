@@ -4,12 +4,10 @@ import edu.arizona.eller.mis.fiveoseven.esb.NflScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.ScoreService;
 import edu.arizona.eller.mis.fiveoseven.esb.SubscriptionManager;
 import edu.arizona.eller.mis.fiveoseven.exceptions.InvalidStateException;
-import edu.arizona.eller.mis.fiveoseven.mocks.SubscriberGenerator;
+import edu.arizona.eller.mis.fiveoseven.mocks.MockSubscriberFactory;
 import edu.arizona.eller.mis.fiveoseven.providers.NflGameProvider;
 
-import java.io.Console;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -49,7 +47,7 @@ public class MainHarness {
 
     private static void addSubscribers(){
         for(int i = 0; i <= 12; i++){
-            subscriptionManager.addSubscribers(SubscriberGenerator.getSubscriber(i), scoreService);
+            subscriptionManager.addSubscribers(MockSubscriberFactory.getSubscriber(i), scoreService);
         }
     }
 

@@ -1,9 +1,13 @@
 package edu.arizona.eller.mis.fiveoseven.esb;
 
-import edu.arizona.eller.mis.fiveoseven.mocks.SubscriberGenerator;
+import edu.arizona.eller.mis.fiveoseven.dto.Game;
+import edu.arizona.eller.mis.fiveoseven.mocks.MockSubscriberFactory;
+import edu.arizona.eller.mis.fiveoseven.providers.NflGameProvider;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,11 +18,19 @@ import java.io.File;
  */
 public class SubscriptionManagerTest {
     SubscriptionManager sm = new SubscriptionManager();
+    NflGameProvider ngp;
+    Properties properties;
 
+    @Before
+    public void setUp() throws Exception {
+        properties = new Properties();
+        properties.load(NflScoreServiceTest.class.getResourceAsStream("files.properties"));
+        ngp = new NflGameProvider((String)properties.get("GAMES"));
+    }
     @Test
     public void testAddSubscribers() throws Exception {
         for(int i = 0; i <= 12; i++){
-            sm.addSubscribers(SubscriberGenerator.getSubscriber(i));
+            sm.addSubscribers(MockSubscriberFactory.getSubscriber(i), new NflScoreService(ngp, sm));
         }
 
         assert(sm.subscribers.size() == 13);
@@ -26,7 +38,7 @@ public class SubscriptionManagerTest {
 
     @Test
     public void testupdateScores() throws Exception {
-        sm.updateScores(new File("/data/GIT_REPOS/mis507/Final_Project/MIS507/src/scores1.txt"));
+        sm.updateScores(new ArrayList<Game>());
 
     }
 }
